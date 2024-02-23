@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Finance Helper API
+
+Resources:
+  FinanceHelperApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: v1
+
+  AuthorizationLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: fh-auth
+      CodeUri: auth/
+      Handler: app.handler
+      Runtime: nodejs20.x
+      Architectures:
+        - x86_64
+      Events:
+        SignUp:
+          Type: Api
+          Properties:
+            Path: /sign-up
+            Method: post
+            RestApiId:
+              Ref: FinanceHelperApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: "es2020"
+        Sourcemap: true
+        EntryPoints:
+        - app.ts
+
+Outputs:
+  FinanceHelperApi:
+    Description: "API Gateway"
+    Value: !Sub "https://${FinanceHelperApi}.execute-api.${AWS::Region}.amazonaws.com/v1/"
+  AuthorizationLambda:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt AuthorizationLambda.Arn
+  AuthorizationLambdaIamRole:
+    Description: "Implicit IAM Role created for function"
+    Value: !GetAtt AuthorizationLambdaRole.Arn
