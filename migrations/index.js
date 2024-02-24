@@ -1,5 +1,5 @@
 import { DatabaseClient } from './database-client.js';
-import { MigrationMgr } from './migration-manager.js';
+import { MigrationManager } from './migration-manager.js';
 import { SecretsManager } from './secrets-manager.js';
 
 async function bootstrap() {
@@ -8,8 +8,8 @@ async function bootstrap() {
   const client = await databaseClient.getClient();
   await client.connect();
 
-  const migrationMgr = new MigrationMgr(client);
-  await migrationMgr.execute();
+  const migrationManager = new MigrationManager(client);
+  await migrationManager.execute();
 
   await client.end();
 }
