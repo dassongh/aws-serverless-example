@@ -1,0 +1,17 @@
+{
+  "name": "migrations",
+  "version": "1.0.0",
+  "description": "database migrations",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "env-cmd -f .env node ."
+  },
+  "author": "Alexander S.",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.521.0",
+    "env-cmd": "^10.1.0",
+    "pg": "^8.11.3"
+  }
+}
