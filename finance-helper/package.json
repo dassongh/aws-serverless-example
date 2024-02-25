@@ -1,7 +1,7 @@
 {
-  "name": "fh_auth",
+  "name": "finance-helper",
   "version": "1.0.0",
-  "description": "Lambda responsible for authorization",
+  "description": "Lambda responsible for CRUD",
   "main": "app.js",
   "author": "Alexander S.",
   "license": "MIT",
@@ -22,6 +22,11 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "esbuild": "^0.20.1"
+    "@aws-sdk/client-secrets-manager": "^3.521.0",
+    "@types/pg": "^8.11.1",
+    "esbuild": "^0.20.1",
+    "inversify": "^6.0.2",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1"
   }
 }

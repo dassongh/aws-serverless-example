@@ -13,7 +13,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: fh-auth
-      CodeUri: auth/
+      CodeUri: finance-helper/
       Handler: app.handler
       Runtime: nodejs20.x
       Architectures:
