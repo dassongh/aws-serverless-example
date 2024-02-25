@@ -1,7 +1,10 @@
+import { ErrorTypes } from '../constants';
+
 export class CustomError extends Error {
   constructor(
     public status: number,
-    public message: string
+    public message: string,
+    public type: keyof typeof ErrorTypes = ErrorTypes.Custom
   ) {
     super(message);
   }
@@ -15,7 +18,7 @@ export class DBError extends CustomError {
   constructor(error: any) {
     console.error('DBError: ', error);
     const errorEntity = DBError.getErrorEntity(error);
-    super(errorEntity.statusCode, errorEntity.message);
+    super(errorEntity.statusCode, errorEntity.message, ErrorTypes.Database);
   }
 
   private static getErrorEntity(error: any) {
@@ -32,24 +35,18 @@ export class DBError extends CustomError {
 
 export class AuthError extends CustomError {
   constructor() {
-    super(401, 'Unauthorized');
+    super(401, 'Unauthorized', ErrorTypes.Authorization);
   }
 }
 
 export class FetchError extends CustomError {
   constructor(message = 'Error with fetching data') {
-    super(424, message);
+    super(424, message, ErrorTypes.Fetch);
   }
 }
 
 export class NotFoundError extends CustomError {
   constructor(message = 'Not Found') {
-    super(404, message);
-  }
-}
-
-export class ParsingError extends CustomError {
-  constructor(message = 'Error with parsing data') {
-    super(500, message);
+    super(404, message, ErrorTypes.NotFound);
   }
 }
