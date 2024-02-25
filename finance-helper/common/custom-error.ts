@@ -1,5 +1,3 @@
-import { PgError } from './interfaces';
-
 export class CustomError extends Error {
   constructor(
     public status: number,
@@ -14,13 +12,13 @@ export class DBError extends CustomError {
   private static FOREIGN_KEY_CONSTRAINT_ERROR = 23503;
   private static RELATION_KEY_NOT_EXIST = 23502;
 
-  constructor(error: PgError) {
+  constructor(error: any) {
     console.error('DBError: ', error);
     const errorEntity = DBError.getErrorEntity(error);
     super(errorEntity.statusCode, errorEntity.message);
   }
 
-  private static getErrorEntity(error: PgError) {
+  private static getErrorEntity(error: any) {
     const entity = {
       [DBError.DUPLICATE_UNIQUE_KEY_ERROR]: { statusCode: 409, message: 'Duplicate value' },
       [DBError.FOREIGN_KEY_CONSTRAINT_ERROR]: { statusCode: 400, message: 'Foreign key constraint' },
