@@ -1,6 +1,6 @@
 import pg from 'pg';
 
-export class DatabaseClient {
+export class DatabaseService {
   #secretsManager;
   #secret;
 

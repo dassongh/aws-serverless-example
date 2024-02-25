@@ -1,6 +1,6 @@
 import { InitTables } from './stages/index.js';
 
-export class MigrationManager {
+export class MigrationService {
   #client;
   #stages;
 

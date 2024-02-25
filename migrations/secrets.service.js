@@ -1,6 +1,6 @@
 import { GetSecretValueCommand, SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
 
-export class SecretsManager {
+export class SecretsService {
   #client = new SecretsManagerClient({ region: process.env.region });
 
   getSecret(secretName) {

@@ -1,15 +1,15 @@
-import { DatabaseClient } from './database-client.js';
-import { MigrationManager } from './migration-manager.js';
-import { SecretsManager } from './secrets-manager.js';
+import { DatabaseService } from './database.service.js';
+import { MigrationService } from './migration.service.js';
+import { SecretsService } from './secrets.service.js';
 
 async function bootstrap() {
-  const secretsManager = new SecretsManager();
-  const databaseClient = new DatabaseClient(secretsManager);
-  const client = await databaseClient.getClient();
+  const secretsService = new SecretsService();
+  const databaseService = new DatabaseService(secretsService);
+  const client = await databaseService.getClient();
   await client.connect();
 
-  const migrationManager = new MigrationManager(client);
-  await migrationManager.execute();
+  const migrationService = new MigrationService(client);
+  await migrationService.execute();
 
   await client.end();
 }
