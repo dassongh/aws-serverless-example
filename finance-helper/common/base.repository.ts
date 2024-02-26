@@ -1,14 +1,16 @@
+import { injectable } from 'inversify';
 import pg from 'pg';
 
-import { DBError } from '../../common/custom-error.js';
+import { DBError } from './custom-error';
 
+@injectable()
 export class BaseRepository {
   constructor(
     private client: pg.PoolClient,
     private tableName: string
   ) {}
 
-  public find(filter: string, values: string[], select = '*', limit?: number, offset?: number) {
+  protected find(filter: string, values: string[], select = '*', limit?: number, offset?: number) {
     const sql = `
       SELECT ${select}
       FROM ${this.tableName}

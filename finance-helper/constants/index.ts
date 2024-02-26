@@ -1,1 +1,1 @@
-export * from './error-types.js';
+export * from './error-types';

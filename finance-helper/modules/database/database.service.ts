@@ -4,18 +4,16 @@ import pg from 'pg';
 import { ISecretsService } from '../secrets/secrets.service.interface';
 import { DatabaseCredentials, IDatabaseService } from './database.service.interface';
 
-import { TYPES } from '../../types';
+import { Types } from '../../common/types';
 
 @injectable()
 export class DatabaseService implements IDatabaseService {
   private secret: DatabaseCredentials | undefined;
 
-  constructor(@inject(TYPES.SecretsManager) private secretsService: ISecretsService) {}
+  constructor(@inject(Types.SecretsService) private secretsService: ISecretsService) {}
 
   async getPool() {
-    if (!this.secret) {
-      this.secret = await this.secretsService.getSecret<DatabaseCredentials>('rds-credentials');
-    }
+    this.secret = await this.secretsService.getSecret<DatabaseCredentials>('rds-credentials');
 
     return new pg.Pool({
       host: this.secret.host,

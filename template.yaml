@@ -9,7 +9,7 @@ Resources:
     Properties:
       StageName: v1
 
-  AuthorizationLambda:
+  FinanceHelperLambda:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: fh-auth
@@ -22,8 +22,22 @@ Resources:
         SignUp:
           Type: Api
           Properties:
-            Path: /sign-up
+            Path: /api/v1/auth/sign-up
             Method: post
+            RestApiId:
+              Ref: FinanceHelperApi
+        SingIn:
+          Type: Api
+          Properties:
+            Path: /api/v1/auth/sign-in
+            Method: post
+            RestApiId:
+              Ref: FinanceHelperApi
+        UserMe:
+          Type: Api
+          Properties:
+            Path: /api/v1/users/me
+            Method: get
             RestApiId:
               Ref: FinanceHelperApi
     Metadata:
@@ -39,9 +53,9 @@ Outputs:
   FinanceHelperApi:
     Description: "API Gateway"
     Value: !Sub "https://${FinanceHelperApi}.execute-api.${AWS::Region}.amazonaws.com/v1/"
-  AuthorizationLambda:
+  FinanceHelperLambda:
     Description: "Lambda Function ARN"
-    Value: !GetAtt AuthorizationLambda.Arn
-  AuthorizationLambdaIamRole:
+    Value: !GetAtt FinanceHelperLambda.Arn
+  FinanceHelperLambdaIamRole:
     Description: "Implicit IAM Role created for function"
-    Value: !GetAtt AuthorizationLambdaRole.Arn
+    Value: !GetAtt FinanceHelperLambdaRole.Arn
