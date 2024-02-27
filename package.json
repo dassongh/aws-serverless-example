@@ -1,0 +1,10 @@
+{
+  "name": "finance_helper_backend",
+  "version": "1.0.0",
+  "description": "Finance Helper backend",
+  "scripts": {
+    "dev": "sam build && sam local start-api"
+  },
+  "author": "Alexander S.",
+  "license": "ISC"
+}

@@ -1,13 +1,14 @@
-import { injectable } from 'inversify';
 import pg from 'pg';
 
+import { injectable, unmanaged } from 'inversify';
+import { TableValues } from '../constants';
 import { DBError } from './custom-error';
 
 @injectable()
-export class BaseRepository {
+export abstract class BaseRepository {
   constructor(
     private client: pg.PoolClient,
-    private tableName: string
+    @unmanaged() private tableName: TableValues
   ) {}
 
   protected find(filter: string, values: string[], select = '*', limit?: number, offset?: number) {

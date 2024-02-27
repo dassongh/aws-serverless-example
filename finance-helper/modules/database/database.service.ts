@@ -12,8 +12,10 @@ export class DatabaseService implements IDatabaseService {
 
   constructor(@inject(Types.SecretsService) private secretsService: ISecretsService) {}
 
-  async getPool() {
-    this.secret = await this.secretsService.getSecret<DatabaseCredentials>('rds-credentials');
+  public async getPool() {
+    if (!this.secret) {
+      this.secret = await this.secretsService.getSecret<DatabaseCredentials>('rds-credentials');
+    }
 
     return new pg.Pool({
       host: this.secret.host,

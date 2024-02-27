@@ -10,7 +10,7 @@ export class AuthController extends BaseController {
     super();
   }
 
-  signUp(body: any) {
+  public signUp(body: any) {
     const result = {
       statusCode: 200,
       payload: {
