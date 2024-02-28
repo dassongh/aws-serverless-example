@@ -12,12 +12,12 @@ export class DatabaseService implements IDatabaseService {
 
   constructor(@inject(Types.SecretsService) private secretsService: ISecretsService) {}
 
-  public async getPool() {
+  public async getClient() {
     if (!this.secret) {
       this.secret = await this.secretsService.getSecret<DatabaseCredentials>('rds-credentials');
     }
 
-    return new pg.Pool({
+    return new pg.Client({
       host: this.secret.host,
       port: this.secret.port,
       user: this.secret.username,

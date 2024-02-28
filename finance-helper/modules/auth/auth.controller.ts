@@ -1,3 +1,4 @@
+import { APIGatewayEventRequestContext, APIGatewayProxyEvent } from 'aws-lambda';
 import { inject, injectable } from 'inversify';
 
 import { BaseController } from '../../common/base.controller';
@@ -10,7 +11,7 @@ export class AuthController extends BaseController {
     super();
   }
 
-  public signUp(body: any) {
+  public signUp(event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) {
     const result = {
       statusCode: 200,
       payload: {
@@ -18,6 +19,6 @@ export class AuthController extends BaseController {
       },
     };
 
-    this.respondWithJSON(result);
+    return this.json(result);
   }
 }

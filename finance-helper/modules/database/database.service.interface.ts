@@ -1,7 +1,7 @@
 import pg from 'pg';
 
 export interface IDatabaseService {
-  getPool(): Promise<pg.Pool>;
+  getClient(): Promise<pg.Client>;
 }
 
 export interface DatabaseCredentials {

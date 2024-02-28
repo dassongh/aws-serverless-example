@@ -4,6 +4,7 @@ import 'reflect-metadata';
 import { Types } from './common/types';
 import { AuthController } from './modules/auth/auth.controller';
 
+import { App } from './app';
 import { DatabaseService } from './modules/database/database.service';
 import { IDatabaseService } from './modules/database/database.service.interface';
 import { SecretsService } from './modules/secrets/secrets.service';
@@ -19,5 +20,6 @@ container.bind<ISecretsService>(Types.SecretsService).to(SecretsService);
 container.bind<AuthController>(Types.AuthController).to(AuthController);
 container.bind<UserService>(Types.UserService).to(UserService);
 container.bind<IUserRepository>(Types.UserRepository).to(UserRepository);
+container.bind<App>(Types.Application).to(App);
 
 export { container };

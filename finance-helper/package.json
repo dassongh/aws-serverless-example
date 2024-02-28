@@ -2,7 +2,7 @@
   "name": "finance-helper",
   "version": "1.0.0",
   "description": "Lambda responsible for CRUD",
-  "main": "app.js",
+  "main": "main.js",
   "author": "Alexander S.",
   "license": "MIT",
   "scripts": {
