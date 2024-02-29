@@ -9,7 +9,7 @@ import { ClientManager } from '../database/client.manager';
 
 @injectable()
 export class UserRepository extends BaseRepository implements IUserRepository {
-  constructor(@inject(Types.ClientManager) clientManger: ClientManager) {
-    super(clientManger, Table.Users);
+  constructor(@inject(Types.ClientManager) clientManager: ClientManager) {
+    super(clientManager, Table.Users);
   }
 }

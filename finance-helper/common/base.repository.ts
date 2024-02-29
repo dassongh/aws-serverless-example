@@ -6,12 +6,12 @@ import { DBError } from './custom-error';
 @injectable()
 export abstract class BaseRepository {
   constructor(
-    protected clientManger: ClientManager,
+    protected clientManager: ClientManager,
     @unmanaged() private tableName: TableValues
   ) {}
 
   protected async find(filter: string, values: string[], select = '*', limit?: number, offset?: number) {
-    const client = await this.clientManger.getClient();
+    const client = await this.clientManager.getClient();
     const sql = `
       SELECT ${select}
       FROM ${this.tableName}
