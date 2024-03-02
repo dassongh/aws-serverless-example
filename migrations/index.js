@@ -17,6 +17,7 @@ async function bootstrap() {
 bootstrap()
   .then(() => {
     console.log('done');
+    process.exit(0);
   })
   .catch(error => {
     console.error(error);

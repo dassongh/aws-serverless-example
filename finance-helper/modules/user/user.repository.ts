@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 
-import { IUserRepository } from './user.repository.interface';
+import { IUserRepository } from './interfaces';
 
 import { BaseRepository } from '../../common/base.repository';
 import { Types } from '../../common/types';

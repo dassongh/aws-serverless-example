@@ -3,27 +3,14 @@ import { injectable } from 'inversify';
 
 @injectable()
 export abstract class BaseController {
-  protected json(response: any): APIGatewayProxyResult {
+  protected json(requestId: string, response: any): APIGatewayProxyResult {
     console.log(response);
 
     return {
-      statusCode: response.statusCode,
+      statusCode: response.status || 200,
       body: JSON.stringify({
+        requestId,
         data: response.payload,
-      }),
-    };
-  }
-
-  protected error(error: any) {
-    console.error(error);
-
-    return {
-      statusCode: error.status || 500,
-      body: JSON.stringify({
-        error: {
-          type: error.type || 'Internal Server Error',
-          message: error.message || 'Internal Server Error',
-        },
       }),
     };
   }

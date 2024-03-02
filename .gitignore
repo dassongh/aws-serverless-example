@@ -4,3 +4,4 @@ samconfig.toml
 node_modules
 package-lock.json
 .env
+local-test
