@@ -13,7 +13,6 @@ export class SecretsService implements ISecretsService {
   private client = new SecretsManagerClient({ region: 'eu-central-1' });
 
   public getSecret<T>(secretName: string): Promise<T> {
-    console.log('--------------getting secrets-------------');
     return this.client
       .send(new GetSecretValueCommand({ SecretId: secretName }))
       .then((res: GetSecretValueCommandOutput) => JSON.parse(res.SecretString as string))

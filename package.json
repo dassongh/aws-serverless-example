@@ -1,7 +1,7 @@
 {
-  "name": "finance_helper_backend",
+  "name": "lambda_example",
   "version": "1.0.0",
-  "description": "Finance Helper backend",
+  "description": "Lambda example",
   "scripts": {
     "dev": "sam build && sam local start-api"
   },

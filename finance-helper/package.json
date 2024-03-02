@@ -1,5 +1,5 @@
 {
-  "name": "finance-helper",
+  "name": "Lambda_CRUD",
   "version": "1.0.0",
   "description": "Lambda responsible for CRUD",
   "main": "main.js",
